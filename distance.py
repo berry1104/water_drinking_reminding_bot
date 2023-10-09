@@ -11,7 +11,7 @@ GPIO.setup(PIN_TRIGGER, GPIO.OUT)
 GPIO.setup(PIN_ECHO, GPIO.IN)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-diameter = 10.0  # Diameter of the cup in centimeters
+DIAMETER = 5.0  # Diameter of the cup in centimeters
 
 GPIO.output(PIN_TRIGGER, GPIO.LOW)
 print("Waiting for sensor to settle")
@@ -19,7 +19,7 @@ time.sleep(2)
 print("-------------------------------")
 
 def caculate_distance():
-    print("Calculating distance")
+    print("\tCalculating distance")
     GPIO.output(PIN_TRIGGER, GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(PIN_TRIGGER, GPIO.LOW)
@@ -49,7 +49,7 @@ def get_amount(d_before, d_after, d):
     r = d / 2.0
     
     # Calculate the change in water height
-    height_change = d_before - d_after
+    height_change = d_after - d_before
     
     # Calculate the volume of water (in milliliters)
     # Using the formula for the volume of a cylinder V = π * r^2 * h, where h is the height change
@@ -70,29 +70,31 @@ try:
         # before
         print("-----before drink water, press the button to start-----")
         GPIO.wait_for_edge(button_pin, GPIO.FALLING)
-        print("Button is pressed, now collect the data before drink water")
+        print("\tButton is pressed, now collect the data before drink water")
         time.sleep(2)
         d_before = caculate_distance()
-        print(f"Before drinking, the distance is {d_before} cm ")
+        print(f"\tBefore drinking, the distance is {d_before} cm ")
         
-        GPIO.wait_for_edge(button_pin, GPIO.RISING)
-        print("Button is released")
+        #GPIO.wait_for_edge(button_pin, GPIO.RISING)
+        print("\tButton is released")
 
         #after
         print("-----after drink water, press the button to start-----")
         GPIO.wait_for_edge(button_pin, GPIO.FALLING)
-        print("Button is pressed, now collect the data after drink water")
+        print("\tButton is pressed, now collect the data after drink water")
         time.sleep(2)
         d_after = caculate_distance()
-        print(f"After drinking, the distance is {d_after} cm ")
+        print(f"\tAfter drinking, the distance is {d_after} cm ")
         
-        GPIO.wait_for_edge(button_pin, GPIO.RISING)
-        print("Button is released")
+        #GPIO.wait_for_edge(button_pin, GPIO.RISING)
+        print("\tButton is released")
+        
         # get the amount of water and time
-        amount = get_amount(d_before, d_after)
-        time = time.localtime(time.time())
+        amount = get_amount(d_before, d_after,DIAMETER)
+        now = time.localtime(time.time())
         # print the result
-        print(f"Time: {time.tm_hour}:{time.tm_min}  Amount: {amount} ml")
+        print("")
+        print(f"*Time: {now.tm_hour}:{now.tm_min}  Amount: {amount} ml")
 
 except KeyboardInterrupt:
     pass
