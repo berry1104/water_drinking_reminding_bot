@@ -1,3 +1,4 @@
+#from Adafruit_CharLCD import Adafruit_CharLCD # Importing Adafruit library for LCD
 import RPi.GPIO as GPIO
 import time
 import math
@@ -10,6 +11,12 @@ button_pin = 19
 GPIO.setup(PIN_TRIGGER, GPIO.OUT)
 GPIO.setup(PIN_ECHO, GPIO.IN)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+
+# initiate lcd and specify pins
+#lcd = Adafruit_CharLCD (rs=26, en=19, d4=13, d5=6, d6=5, d7=21, cols=16, lines=2)
+#lcd.clear()
+#lcd.message('WELCOME TO \nIoT WATER BOT')
 
 DIAMETER = 5.0  # Diameter of the cup in centimeters
 
@@ -66,6 +73,7 @@ def get_amount(d_before, d_after, d):
 
 try:
     while True:
+        
         print("-----------------------------------------------------")
         # before
         print("-----before drink water, press the button to start-----")
@@ -91,10 +99,11 @@ try:
         
         # get the amount of water and time
         amount = get_amount(d_before, d_after,DIAMETER)
-        now = time.localtime(time.time())
+        now = time.ctime()
         # print the result
         print("")
-        print(f"*Time: {now.tm_hour}:{now.tm_min}  Amount: {amount} ml")
+        print(f"\t{now} drink  {amount} ml water")
+        #lcd.message('f{now} \n drink {amount} ml wate')
 
 except KeyboardInterrupt:
     pass
