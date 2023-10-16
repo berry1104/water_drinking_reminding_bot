@@ -11,7 +11,6 @@
         <div id="cup"></div>
         <div id="water-level"></div>
     </div>
-    <p id="amount-display">0 ml</p>
 
     <div id="data-display">
         <h2>Water Consumption Data</h2>
@@ -28,11 +27,17 @@
         </table>
     </div>
 
+    <p id="total-amount">Total Amount: 0 ml</p>
+
     <script>
         // JavaScript 代码
         const waterLevel = document.getElementById('water-level');
         const amountDisplay = document.getElementById('amount-display');
         const dataBody = document.getElementById('data-body');
+        const totalAmountDisplay = document.getElementById('total-amount');
+
+        // variable to track the total amount of water consumed
+        let totalAmount = 0;
 
         // 从服务器获取数据
         fetch('/get_data')
@@ -53,11 +58,17 @@
                     timeCell.textContent = entry[1];  // entry[1] 是时间
                     amountCell.textContent = entry[2];  // entry[2] 是饮水量
 
+                    // 更新总饮水量
+                    totalAmount += entry[2];
+                    
                     row.appendChild(timeCell);
                     row.appendChild(amountCell);
 
                     dataBody.appendChild(row);
                 });
+
+                // 更新总饮水量的显示
+                totalAmountDisplay.textContent = `Total Amount: ${totalAmount} ml`;
             })
             .catch(error => console.error(error));
     </script>
