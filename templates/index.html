@@ -4,61 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Water Consumption Tracker</title>
-    <meta charset="UTF-8">
-    <title>Water Consumption Tracker</title>
-    <style>
-        body {
-            background-color: blue;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-
-        h1,
-        h2， {
-            background-color: white;
-            padding: 15px;
-            font-family: Arial, sans-serif;
-        }
-
-        table {
-            width: 100%;
-        }
-
-        th {
-            background-color: #d7d4d4;
-            padding: 10px;
-        }
-
-        td {
-            background-color: #eff2f3;
-            padding: 10px;
-        }
-
-        #total-amount-container {
-            border: 1px solid #000;
-            padding: 5px;
-            display: flex;
-            /* 启用 flex 布局 */
-            justify-content: space-between;
-            /* 元素在容器中水平分布，空间在元素之间平均分配 */
-            align-items: center;
-            /* 垂直居中对齐元素 */
-        }
-
-        #total-amount {
-            margin: 0;
-        }
-
-        #total-amount-button {
-            position: absolute;
-            /* 启用绝对定位 */
-            right: 450px;
-            /* 调整按钮距离右边的距离 */
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body style="background-color: rgb(220, 230, 237);">
@@ -88,49 +34,7 @@
         <button id="total-amount-button">Button</button>
     </div>
 
-    <script>
-        // JavaScript 代码
-        const waterLevel = document.getElementById('water-level');
-        const amountDisplay = document.getElementById('amount-display');
-        const dataBody = document.getElementById('data-body');
-        const totalAmountDisplay = document.getElementById('total-amount');
-
-        // variable to track the total amount of water consumed
-        let totalAmount = 0;
-
-        // 从服务器获取数据
-        fetch('/get_data')
-            .then(response => response.json())
-            .then(data => {
-                // 处理从服务器获取的数据
-                console.log(data);  // 在控制台输出数据
-
-                // 清空数据表格
-                dataBody.innerHTML = '';
-
-                // 更新页面以显示数据
-                data.forEach(entry => {
-                    const row = document.createElement('tr');
-                    const timeCell = document.createElement('td');
-                    const amountCell = document.createElement('td');
-
-                    timeCell.textContent = entry[1];  // entry[1] 是时间
-                    amountCell.textContent = entry[2];  // entry[2] 是饮水量
-
-                    // 更新总饮水量
-                    totalAmount += entry[2];
-
-                    row.appendChild(timeCell);
-                    row.appendChild(amountCell);
-
-                    dataBody.appendChild(row);
-                });
-
-                // 更新总饮水量的显示
-                totalAmountDisplay.textContent = `Total Amount: ${totalAmount} ml`;
-            })
-            .catch(error => console.error(error));
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>

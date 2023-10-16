@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify
 import sqlite3
 
 app = Flask(__name__)
+app.config['STATIC_FOLDER'] = 'static'
 
 # 配置数据库连接信息
 db_name = 'water_data_test.db'
