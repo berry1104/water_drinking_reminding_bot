@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Water Consumption Tracker</title>
+    <!-- 添加样式和其他内容 -->
+</head>
+<body>
+    <h1>Water Consumption Tracker</h1>
+    <div id="cup-container">
+        <div id="cup"></div>
+        <div id="water-level"></div>
+    </div>
+    <p id="amount-display">0 ml</p>
+
+    <div id="data-display">
+        <h2>Water Consumption Data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Amount (ml)</th>
+                </tr>
+            </thead>
+            <tbody id="data-body">
+                <!-- 数据将在这里动态显示 -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript 代码
+        const waterLevel = document.getElementById('water-level');
+        const amountDisplay = document.getElementById('amount-display');
+        const dataBody = document.getElementById('data-body');
+
+        // 从服务器获取数据
+        fetch('/get_data')
+            .then(response => response.json())
+            .then(data => {
+                // 处理从服务器获取的数据
+                console.log(data);  // 在控制台输出数据
+
+                // 清空数据表格
+                dataBody.innerHTML = '';
+
+                // 更新页面以显示数据
+                data.forEach(entry => {
+                    const row = document.createElement('tr');
+                    const timeCell = document.createElement('td');
+                    const amountCell = document.createElement('td');
+
+                    timeCell.textContent = entry[1];  // entry[1] 是时间
+                    amountCell.textContent = entry[2];  // entry[2] 是饮水量
+
+                    row.appendChild(timeCell);
+                    row.appendChild(amountCell);
+
+                    dataBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
+</html>
