@@ -1,19 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Water Consumption Tracker</title>
-    <!-- 添加样式和其他内容 -->
+    <meta charset="UTF-8">
+    <title>Water Consumption Tracker</title>
+    <style>
+        body {
+            background-color: blue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1,
+        h2， {
+            background-color: white;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            background-color: #d7d4d4;
+            padding: 10px;
+        }
+
+        td {
+            background-color: #eff2f3;
+            padding: 10px;
+        }
+
+        #total-amount-container {
+            border: 1px solid #000;
+            padding: 5px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        #total-amount {
+            margin: 0;
+        }
+
+        #total-amount-button {
+            margin-left: 10px;
+            /* 调整按钮与文本之间的间距 */
+        }
+    </style>
 </head>
-<body>
-    <h1>Water Consumption Tracker</h1>
+
+<body style="background-color: rgb(220, 230, 237);">
+    <h1 style="background-color: white; padding: 10px;">Water Consumption Tracker</h1>
     <div id="cup-container">
         <div id="cup"></div>
         <div id="water-level"></div>
     </div>
 
     <div id="data-display">
-        <h2>Water Consumption Data</h2>
+        <h2 style="background-color: white; padding: 10px;">Water Consumption Data</h2>
         <table>
             <thead>
                 <tr>
@@ -27,7 +77,10 @@
         </table>
     </div>
 
-    <p id="total-amount">Total Amount: 0 ml</p>
+    <div id="total-amount-container">
+        <p id="total-amount">Total Amount: 0 ml</p>
+        <button id="total-amount-button">Button</button>
+    </div>
 
     <script>
         // JavaScript 代码
@@ -60,7 +113,7 @@
 
                     // 更新总饮水量
                     totalAmount += entry[2];
-                    
+
                     row.appendChild(timeCell);
                     row.appendChild(amountCell);
 
@@ -73,4 +126,5 @@
             .catch(error => console.error(error));
     </script>
 </body>
+
 </html>
