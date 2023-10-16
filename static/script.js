@@ -3,6 +3,30 @@ const waterLevel = document.getElementById('water-level');
 const amountDisplay = document.getElementById('amount-display');
 const dataBody = document.getElementById('data-body');
 const totalAmountDisplay = document.getElementById('total-amount');
+const startButton = document.getElementById('start-button');
+const stopButton = document.getElementById('stop-button');
+
+// start button event listeners
+startButton.addEventListener('click', () => {
+    // run water_BCM.py
+    fetch('../start', {
+        method: 'POST'
+    });
+
+
+    
+});
+
+
+// stop button event listeners
+stopButton.addEventListener('click', () => {
+    // stop water_BCM.py
+    fetch('../stop', {
+        method: 'POST'
+    });
+});
+
+
 
 // variable to track the total amount of water consumed
 let totalAmount = 0;

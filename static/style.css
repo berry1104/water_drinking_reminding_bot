@@ -39,7 +39,12 @@ td {
     margin: 0;
 }
 
-#total-amount-button {
+#start-button {
     position: absolute;
-    right: 450px;
+    right: 600px;
+}
+
+#stop-button {
+    position: absolute;
+    right: 550px;
 }
