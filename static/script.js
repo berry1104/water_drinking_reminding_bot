@@ -6,6 +6,20 @@ const totalAmountDisplay = document.getElementById('total-amount');
 const startButton = document.getElementById('start-button');
 const stopButton = document.getElementById('stop-button');
 
+// 设置定时刷新，这里的时间间隔是毫秒
+const refreshInterval = 60000; // 60秒
+
+function autoRefresh() {
+    // 执行你想要刷新的操作，例如重新获取数据或重载页面
+    location.reload(); // 这会刷新整个页面
+
+    // 或者你可以触发一个特定的操作
+    // fetch('/get_data'); // 例如，重新获取数据
+}
+
+// 设置定时器，以每隔指定时间间隔自动执行 autoRefresh 函数
+const refreshTimer = setInterval(autoRefresh, refreshInterval);
+
 // start button event listeners
 startButton.addEventListener('click', () => {
     // run water_BCM.py
