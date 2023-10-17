@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+#dashboard {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#cup-container {
+    margin: auto;
+    width: 100px; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    background-color: white; /* Or any other background */
+    border: 1px solid #dedede; /* Or any other border styling */
+    margin-top: 20px;
+}
