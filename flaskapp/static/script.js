@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 data: [0, 2000], // Initial data, will be updated
                 backgroundColor: [
                     'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 255, 255, 0.5)'
+                    'rgba(200, 200, 200, 0.5)'
                 ],
             }],
             labels: [
@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
+            responsive: false,
+            maintainAspectRatio: true,
         }
     });
 
@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             // Process the data and update the chart
             let totalDrank = data.reduce((acc, entry) => acc + entry[2], 0);
+            if (totalDrank > 2000) {
+                totalDrank = 2000;
+            }
             let remaining = 2000 - totalDrank; // 2000ml is the total capacity
             progressChart.data.datasets[0].data = [totalDrank, remaining];
             progressChart.update();
@@ -36,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update the cup visualization based on the data
             let cupHeight = 200; // The total height of the SVG container
             let waterLevel = (remaining / 2000) * cupHeight; // Calculate the water level based on the remaining amount
+            // Ensure water level is within the bounds
+            // waterLevel = Math.max(0, Math.min(waterLevel, cupHeight));
 
             waterCup.setAttribute('height', waterLevel.toString());
             waterCup.setAttribute('y', (cupHeight - waterLevel).toString());
