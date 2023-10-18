@@ -1,17 +1,72 @@
-body {
-    background-color: blue;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+html, body {
+    height: 100%; /* Full height of the viewport */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
     font-family: Arial, sans-serif;
+    /* background-color: #f5f5f5; */
+    transition: background-size 1s ease;
+    display: flex;
+    
 }
 
-h1, h2 {
-    background-color: white;
-    padding: 15px;
-    font-family: Arial, sans-serif;
+.container {
+    height: 100%; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
 }
+
+/* body {
+
+    margin: 0;
+    padding: 0;
+    
+} */
+
+#dashboard {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#cup-container {
+    margin: auto;
+    width: 100px; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    background-color: white; /* Or any other background */
+    border: 1px solid #dedede; /* Or any other border styling */
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; /* This will space your items evenly */
+    align-items: start; /* Adjust vertical alignment as needed */
+    flex-wrap: wrap; /* Allows the items to wrap to the next line if the screen is too small */
+}
+
+.col {
+    flex: 1; /* This allows your columns to grow and shrink as needed within the row */
+    margin: 10px; /* Optional: for some space between the columns */
+}
+
+.chart-container {
+    width: 1000px; /* Adjust as needed */
+    height: 2000px; /* Adjust as needed */
+    /* display: flex; */
+    /* justify-content: space-between; */
+}
+
+
+
+
 
 table {
     width: 100%;
@@ -37,14 +92,4 @@ td {
 
 #total-amount {
     margin: 0;
-}
-
-#start-button {
-    position: absolute;
-    right: 600px;
-}
-
-#stop-button {
-    position: absolute;
-    right: 550px;
 }
