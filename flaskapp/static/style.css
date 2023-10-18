@@ -1,9 +1,29 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+html, body {
+    height: 100%; /* Full height of the viewport */
     margin: 0;
     padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: Arial, sans-serif;
+    /* background-color: #f5f5f5; */
+    transition: background-size 1s ease;
+    display: flex;
+    
 }
+
+.container {
+    height: 100%; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
+}
+
+/* body {
+
+    margin: 0;
+    padding: 0;
+    
+} */
 
 #dashboard {
     text-align: center;
@@ -35,4 +55,41 @@ canvas {
 .col {
     flex: 1; /* This allows your columns to grow and shrink as needed within the row */
     margin: 10px; /* Optional: for some space between the columns */
+}
+
+.chart-container {
+    width: 1000px; /* Adjust as needed */
+    height: 2000px; /* Adjust as needed */
+    /* display: flex; */
+    /* justify-content: space-between; */
+}
+
+
+
+
+
+table {
+    width: 100%;
+}
+
+th {
+    background-color: #d7d4d4;
+    padding: 10px;
+}
+
+td {
+    background-color: #eff2f3;
+    padding: 10px;
+}
+
+#total-amount-container {
+    border: 1px solid #000;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#total-amount {
+    margin: 0;
 }
